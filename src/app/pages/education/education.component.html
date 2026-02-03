@@ -1,0 +1,21 @@
+<section appScrollFade class="py-24 px-6 max-w-3xl mx-auto">
+  <h1 class="text-4xl font-bold tracking-tight text-apple-black dark:text-white mb-16 text-center">
+    Education
+  </h1>
+  <div class="space-y-12">
+    @for (edu of data.education; track edu.institution + edu.period) {
+      <div
+        class="rounded-[28px] border border-[#d2d2d7] dark:border-zinc-700 bg-white dark:bg-zinc-800/50 p-8 shadow-sm transition-transform duration-300 hover:scale-[1.02]"
+      >
+        <h2 class="text-xl font-bold tracking-tight text-apple-black dark:text-white mb-2">
+          {{ edu.degree }}
+        </h2>
+        <p class="text-apple-blue font-semibold text-[15px] mb-1">{{ edu.institution }}</p>
+        <p class="text-apple-gray dark:text-zinc-400 text-[15px] mb-4">{{ edu.period }}</p>
+        @if (edu.notes) {
+          <p class="text-apple-gray dark:text-zinc-400 text-[15px] leading-relaxed">{{ edu.notes }}</p>
+        }
+      </div>
+    }
+  </div>
+</section>

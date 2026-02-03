@@ -1,0 +1,25 @@
+<section appScrollFade class="py-24 px-6 max-w-3xl mx-auto">
+  <h1 class="text-4xl font-bold tracking-tight text-apple-black dark:text-white mb-16 text-center">
+    Experience
+  </h1>
+  <div class="space-y-12">
+    @for (job of data.experience; track job.company + job.period) {
+      <div
+        class="rounded-[28px] border border-[#d2d2d7] dark:border-zinc-700 bg-white dark:bg-zinc-800/50 p-8 shadow-sm transition-transform duration-300 hover:scale-[1.02]"
+      >
+        <div class="flex flex-wrap items-baseline justify-between gap-2 mb-4">
+          <h2 class="text-xl font-bold tracking-tight text-apple-black dark:text-white">
+            {{ job.role }}
+          </h2>
+          <span class="text-apple-gray dark:text-zinc-400 text-[15px] whitespace-nowrap">{{ job.period }}</span>
+        </div>
+        <p class="text-apple-blue font-semibold text-[15px] mb-6">{{ job.company }}</p>
+        <ul class="space-y-3 text-apple-gray dark:text-zinc-400 text-[15px] leading-relaxed list-disc list-inside pl-0">
+          @for (line of job.description; track line) {
+            <li>{{ line }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+</section>

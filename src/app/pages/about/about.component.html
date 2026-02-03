@@ -1,0 +1,13 @@
+<section
+  appScrollFade
+  class="py-24 px-6 max-w-3xl mx-auto"
+>
+  <h1 class="text-4xl font-bold tracking-tight text-apple-black dark:text-white mb-12 text-center">
+    {{ data.about.title }}
+  </h1>
+  <div class="space-y-6 text-apple-gray dark:text-zinc-400 text-[17px] leading-relaxed">
+    @for (p of data.about.paragraphs; track p) {
+      <p class="m-0">{{ p }}</p>
+    }
+  </div>
+</section>

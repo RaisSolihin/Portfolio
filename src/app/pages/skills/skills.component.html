@@ -1,0 +1,47 @@
+<section appScrollFade class="py-24 px-6 max-w-5xl mx-auto">
+  <h1 class="text-4xl font-bold tracking-tight text-apple-black dark:text-white mb-16 text-center">
+    Skills
+  </h1>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    @for (group of data.skills; track group.title) {
+      <div
+        class="rounded-[28px] border border-[#d2d2d7] dark:border-zinc-700 bg-white dark:bg-zinc-800/50 p-8 shadow-sm transition-transform duration-300 hover:scale-[1.02]"
+      >
+        <h2 class="text-lg font-bold tracking-tight text-apple-black dark:text-white mb-6">
+          {{ group.title }}
+        </h2>
+        <ul class="space-y-3 text-apple-gray dark:text-zinc-400 text-[15px] leading-relaxed list-disc list-inside">
+          @for (item of group.items; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+
+  <!-- Skill details section -->
+  <div class="mt-24">
+    <h2 class="text-2xl font-bold tracking-tight text-apple-black dark:text-white mb-10 text-center">
+      Skill details
+    </h2>
+    <div class="space-y-10">
+      @for (detail of data.skillDetails; track detail.title) {
+        <div
+          class="rounded-[28px] border border-[#d2d2d7] dark:border-zinc-700 bg-white dark:bg-zinc-800/50 p-8 shadow-sm transition-transform duration-300 hover:scale-[1.02] text-left"
+        >
+          <h3 class="text-lg font-bold tracking-tight text-apple-black dark:text-white mb-6">
+            {{ detail.title }}
+          </h3>
+          <ul class="space-y-4 text-apple-gray dark:text-zinc-400 text-[15px] leading-relaxed list-none pl-0 m-0">
+            @for (item of detail.items; track item) {
+              <li class="flex gap-3">
+                <span class="text-apple-blue shrink-0">•</span>
+                <span>{{ item }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,37 @@
+<section
+  appScrollFade
+  class="py-24 px-6 max-w-3xl mx-auto"
+>
+  <h1 class="text-4xl font-bold tracking-tight text-apple-black dark:text-white mb-12 text-center">
+    Contact
+  </h1>
+  <div class="rounded-[28px] border border-[#d2d2d7] dark:border-zinc-700 bg-white dark:bg-zinc-800/50 p-8 shadow-sm space-y-4 text-apple-gray dark:text-zinc-400 text-[15px]">
+    <p class="m-0">
+      <span class="font-semibold text-apple-black dark:text-white">Email:</span>
+      <a [href]="'mailto:' + data.contact.email" class="text-apple-blue hover:underline no-underline ml-1">{{ data.contact.email }}</a>
+    </p>
+    @if (data.contact.phone) {
+      <p class="m-0">
+        <span class="font-semibold text-apple-black dark:text-white">Phone:</span>
+        <a [href]="'tel:' + data.contact.phone" class="text-apple-blue hover:underline no-underline ml-1">{{ data.contact.phone }}</a>
+      </p>
+    }
+    @if (data.contact.linkedIn) {
+      <p class="m-0">
+        <span class="font-semibold text-apple-black dark:text-white">LinkedIn:</span>
+        <a [href]="data.contact.linkedIn" target="_blank" rel="noopener noreferrer" class="text-apple-blue hover:underline no-underline ml-1">Profile</a>
+      </p>
+    }
+    @if (data.contact.github) {
+      <p class="m-0">
+        <span class="font-semibold text-apple-black dark:text-white">GitHub:</span>
+        <a [href]="data.contact.github" target="_blank" rel="noopener noreferrer" class="text-apple-blue hover:underline no-underline ml-1">Profile</a>
+      </p>
+    }
+    @if (data.contact.location) {
+      <p class="m-0">
+        <span class="font-semibold text-apple-black dark:text-white">Location:</span> {{ data.contact.location }}
+      </p>
+    }
+  </div>
+</section>

@@ -1,0 +1,117 @@
+<section appScrollFade class="py-24 px-6 max-w-4xl mx-auto">
+  <header class="flex flex-wrap items-center justify-between gap-4 mb-12 pb-8 border-b-2 border-[#d2d2d7]">
+    <h1 class="text-3xl font-bold tracking-tight text-apple-black dark:text-white m-0">
+      {{ data.resume.title }}
+    </h1>
+    @if (data.resume.pdfUrl) {
+      <a
+        [href]="data.resume.pdfUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        download
+        class="inline-block px-8 py-3.5 rounded-full bg-apple-black dark:bg-white dark:text-apple-black text-white font-semibold text-[15px] hover:scale-[1.02] transition-transform no-underline"
+      >
+        {{ data.resume.downloadButtonText ?? 'Download resume (PDF)' }}
+      </a>
+    } @else {
+      <span
+        class="inline-block px-8 py-3.5 rounded-full bg-apple-gray/30 text-apple-gray font-semibold text-[15px] cursor-not-allowed"
+        title="Add your PDF link in portfolio-data.ts under resume.pdfUrl"
+      >
+        {{ data.resume.downloadButtonText ?? 'Download resume (PDF)' }}
+      </span>
+    }
+  </header>
+
+  @if (data.resume.content; as content) {
+    <div class="space-y-8">
+      <!-- Summary -->
+      <div class="rounded-[28px] border border-[#d2d2d7] bg-white p-8 shadow-sm transition-transform duration-300 hover:scale-[1.02] text-left">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-apple-blue mb-4 pb-2 border-b border-[#d2d2d7]">Summary</h2>
+        <p class="text-apple-gray text-[15px] leading-relaxed m-0">{{ content.summary }}</p>
+      </div>
+
+      <!-- Education -->
+      <div class="rounded-[28px] border border-[#d2d2d7] bg-white p-8 shadow-sm transition-transform duration-300 hover:scale-[1.02] text-left">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-apple-blue mb-6 pb-2 border-b border-[#d2d2d7]">Educational Background</h2>
+        @for (edu of content.education; track edu.institution + edu.period) {
+          <div class="mb-6 last:mb-0">
+            <div class="flex flex-wrap justify-between items-baseline gap-2 mb-1">
+              <span class="font-semibold text-apple-black">{{ edu.institution }}</span>
+              <span class="text-apple-gray text-sm whitespace-nowrap">{{ edu.period }}</span>
+            </div>
+            <p class="font-medium text-apple-black text-[15px] mb-1">{{ edu.degree }}</p>
+            @if (edu.courses) {
+              <p class="text-apple-gray text-sm leading-relaxed m-0">Relevant Courses: {{ edu.courses }}</p>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Working Experience -->
+      <div class="rounded-[28px] border border-[#d2d2d7] bg-white p-8 shadow-sm transition-transform duration-300 hover:scale-[1.02] text-left">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-apple-blue mb-6 pb-2 border-b border-[#d2d2d7]">Working Experience</h2>
+        @for (entry of content.experience; track entry.company) {
+          <div class="mb-8 last:mb-0">
+            <div class="flex flex-wrap justify-between items-baseline gap-2 mb-2">
+              <span class="font-semibold text-apple-black">{{ entry.company }}</span>
+              @if (entry.period) {
+                <span class="text-apple-gray text-sm whitespace-nowrap">{{ entry.period }}</span>
+              }
+            </div>
+            @for (role of entry.roles; track role.role) {
+              <div class="ml-4 pl-4 border-l-2 border-[#d2d2d7] mt-4 first:mt-2">
+                <h3 class="font-semibold text-apple-black text-[15px] mb-2">{{ role.role }}</h3>
+                <ul class="space-y-2 text-apple-gray text-sm leading-relaxed list-disc list-inside pl-0 m-0">
+                  @for (bullet of role.bullets; track bullet) {
+                    <li>{{ bullet }}</li>
+                  }
+                </ul>
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      <!-- Technical Skills -->
+      <div class="rounded-[28px] border border-[#d2d2d7] bg-white p-8 shadow-sm transition-transform duration-300 hover:scale-[1.02] text-left">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-apple-blue mb-4 pb-2 border-b border-[#d2d2d7]">Technical Skills</h2>
+        <ul class="space-y-2 text-apple-gray text-sm leading-relaxed list-disc list-inside pl-0 m-0">
+          @for (skill of content.technicalSkills; track skill) {
+            <li>{{ skill }}</li>
+          }
+        </ul>
+      </div>
+
+      <!-- Volunteering -->
+      <div class="rounded-[28px] border border-[#d2d2d7] bg-white p-8 shadow-sm transition-transform duration-300 hover:scale-[1.02] text-left">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-apple-blue mb-6 pb-2 border-b border-[#d2d2d7]">Volunteering & Program Experiences</h2>
+        @for (item of content.volunteering; track item.title) {
+          <div class="mb-5 last:mb-0">
+            <h3 class="font-semibold text-apple-black text-[15px] mb-2">{{ item.title }}</h3>
+            <ul class="space-y-2 text-apple-gray text-sm leading-relaxed list-disc list-inside pl-0 m-0">
+              @for (point of item.items; track point) {
+                <li>{{ point }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+
+      <!-- Language -->
+      <div class="rounded-[28px] border border-[#d2d2d7] bg-white p-8 shadow-sm transition-transform duration-300 hover:scale-[1.02] text-left">
+        <h2 class="text-sm font-bold uppercase tracking-wider text-apple-blue mb-4 pb-2 border-b border-[#d2d2d7]">Language</h2>
+        <ul class="space-y-2 text-apple-gray text-sm leading-relaxed list-disc list-inside pl-0 m-0">
+          @for (lang of content.language; track lang) {
+            <li>{{ lang }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  } @else {
+    <p class="text-apple-gray text-[15px]">Add your resume PDF link in <code class="bg-[#f5f5f7] border border-[#d2d2d7] rounded px-1 py-0.5 text-sm">portfolio-data.ts</code> under <code class="bg-[#f5f5f7] border border-[#d2d2d7] rounded px-1 py-0.5 text-sm">resume.pdfUrl</code>.</p>
+    @if (data.resume.description) {
+      <p class="text-apple-gray text-[15px] mt-2">{{ data.resume.description }}</p>
+    }
+  }
+</section>

@@ -1,5 +1,6 @@
 # Deploy Angular portfolio to GitHub Pages
 # Your site will be at: https://<username>.github.io/<repo-name>/
+# Do not use "Deploy static content to Pages" - it deploys repo root and causes 404.
 
 name: Deploy to GitHub Pages
 

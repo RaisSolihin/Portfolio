@@ -35,6 +35,11 @@ jobs:
       - name: Build for GitHub Pages
         run: npm run build -- --base-href /${{ github.event.repository.name }}/
 
+      - name: Verify build output
+        run: |
+          ls -la dist/portfolio/browser/
+          test -f dist/portfolio/browser/index.html || (echo "Missing index.html" && exit 1)
+
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
 

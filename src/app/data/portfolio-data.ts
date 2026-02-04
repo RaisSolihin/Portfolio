@@ -48,7 +48,6 @@ export interface ContactData {
   email: string;
   phone?: string;
   linkedIn?: string;
-  github?: string;
 }
 
 export interface ResumeEducationItem {
@@ -345,6 +344,5 @@ export const PORTFOLIO_DATA: PortfolioData = {
     email: 'raissolihin1910@gmail.com',
     phone: '+6011-7030 5450',
     linkedIn: 'https://www.linkedin.com/in/raissolihin/',
-    github: 'https://github.com/RaisSolihin',
   },
 };
